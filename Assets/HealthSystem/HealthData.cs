@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "HealthData_", menuName = "PlayerHealthData/Health")]
+[CreateAssetMenu(fileName = "Health&EffectsData_", menuName = "PlayerHealthData/Health")]
 public class  HealthData : ScriptableObject
 {
     
@@ -30,8 +30,8 @@ public class  HealthData : ScriptableObject
     [SerializeField]
     [Range(1,5)]
     [Tooltip("Increases Rate of bleeding based on bleedDamage")]
-    private int _bleedIntensity = 1;
-    public int BleedIntensity => _bleedIntensity;
+    private float _bleedIntensity;
+    public float BleedIntensity => _bleedIntensity;
 
     //[Separator(1, 20)]
 
@@ -124,9 +124,6 @@ public class  HealthData : ScriptableObject
     private bool _concussionEffect = false;
     public bool ConcussionEffect => _concussionEffect;
 
-
-
-
     //[Separator(1, 20)]
     // Stats
 
@@ -143,7 +140,33 @@ public class  HealthData : ScriptableObject
     [SerializeField]
     [Range(1,10)]
     [Tooltip("The Intensity at which the player is slowed (Varies by Health Amount)")]
-    private int _slowIntensity = 1;
-    public int SlowIntensity => _slowIntensity;
+    private float _slowIntensity = 1;
+    public float SlowIntensity => _slowIntensity;
 
+    //SFX
+
+    [SerializeField]
+    [Tooltip("Whether or not the player will experience SFX Based On Health Related Events")]
+    private bool _soundEffects = false;
+    public bool SoundEffects => _soundEffects;
+
+    [SerializeField]
+    [Tooltip("Whether or not the players will experience a SFX on Flinch")]
+    private bool _flinchSfx = false;
+    public bool FlinchSfx => _flinchSfx;
+
+    [SerializeField]
+    [Tooltip("Whether or not the players will experience a SFX on Medkit Useage")]
+    private bool _medkitSfx = false;
+    public bool MedkitSfx => _medkitSfx;
+
+    [SerializeField]
+    [Tooltip("Whether or not the players will experience a SFX on Bandage Useage")]
+    private bool _bandageSfx = false;
+    public bool BandageSfx => _bandageSfx;
+
+    [SerializeField]
+    [Tooltip("Whether or not the players will experience a SFX on Splint Useage")]
+    private bool _splintSfx = false;
+    public bool SplintSfx => _splintSfx;
 }

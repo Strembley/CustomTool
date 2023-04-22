@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b866ad805440e4b9e8ada4f44a1512, type: 3}
-  m_Name: HealthData_
+  m_Name: Health&EffectsData_
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _bleedOut: 0
@@ -35,3 +35,8 @@ MonoBehaviour:
   _affectStats: 0
   _movementSpeed: 0
   _slowIntensity: 1
+  _soundEffects: 0
+  _flinchSfx: 0
+  _medkitSfx: 0
+  _bandageSfx: 0
+  _splintSfx: 0

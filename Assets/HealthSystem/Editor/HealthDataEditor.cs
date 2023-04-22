@@ -30,6 +30,11 @@ public class HealthDataEditor : Editor
     private SerializedProperty _affectStats;
     private SerializedProperty _movementSpeed;
     private SerializedProperty _slowIntensity;
+    private SerializedProperty _soundEffects;
+    private SerializedProperty _flinchSfx;
+    private SerializedProperty _medkitSfx;
+    private SerializedProperty _bandageSfx;
+    private SerializedProperty _splintSfx;
 
     private void OnEnable()
     {
@@ -56,7 +61,12 @@ public class HealthDataEditor : Editor
         _affectStats = serializedObject.FindProperty("_affectStats");
         _movementSpeed = serializedObject.FindProperty("_movementSpeed");
         _slowIntensity = serializedObject.FindProperty("_slowIntensity");
-}
+        _soundEffects = serializedObject.FindProperty("_soundEffects");
+        _flinchSfx = serializedObject.FindProperty("_flinchSfx");
+        _medkitSfx = serializedObject.FindProperty("_medkitSfx");
+        _bandageSfx = serializedObject.FindProperty("_bandageSfx");
+        _splintSfx = serializedObject.FindProperty("_splintSfx");
+    }
 
     public override void OnInspectorGUI()
     {
@@ -78,11 +88,12 @@ public class HealthDataEditor : Editor
             EditorGUI.indentLevel++;
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Advanced Bleed Settings", EditorStyles.boldLabel);
+            EditorGUILayout.Space(10);
             EditorGUILayout.PropertyField(_bleedDamage, new GUIContent("Bleed Damage"));
-            _bleedIntensity.floatValue = EditorGUILayout.Slider(1, 1, 10);
+            _bleedIntensity.floatValue = EditorGUILayout.Slider("Bleed Intensity",_bleedIntensity.floatValue, 1, 10);
         }
        
-        EditorGUILayout.Space(20);
+        EditorGUILayout.Space(40);
 
         EditorGUILayout.LabelField("General Limb Settings", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(_limbLoss, new GUIContent("Limb Loss"));
@@ -92,12 +103,13 @@ public class HealthDataEditor : Editor
             EditorGUI.indentLevel++;
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Advanced Limb Settings", EditorStyles.boldLabel);
+            EditorGUILayout.Space(10);
             EditorGUILayout.PropertyField(_arms, new GUIContent("Arms"));
             EditorGUILayout.PropertyField(_legs, new GUIContent("Legs"));
             EditorGUILayout.PropertyField(_head, new GUIContent("Head"));
         }
         
-        EditorGUILayout.Space(20);
+        EditorGUILayout.Space(40);
 
         EditorGUILayout.LabelField("General FirstAid Settings", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(_firstAid, new GUIContent("First Aid"));
@@ -106,6 +118,7 @@ public class HealthDataEditor : Editor
             EditorGUI.indentLevel++;
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Advanced FirstAid Settings", EditorStyles.boldLabel);
+            EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Medkit", EditorStyles.boldLabel);
             EditorGUILayout.Space(5);
             EditorGUILayout.PropertyField(_stopBleeding, new GUIContent("Stop Bleeeding"));
@@ -123,8 +136,8 @@ public class HealthDataEditor : Editor
 
             
         }
-
-        EditorGUILayout.Space(20);
+        
+        EditorGUILayout.Space(40);
 
         EditorGUILayout.LabelField("General Screen Effect Settings", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(_screenEffects, new GUIContent("Screen Effects"));
@@ -133,6 +146,7 @@ public class HealthDataEditor : Editor
             EditorGUI.indentLevel++;
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Advanced Screen Effect Settings", EditorStyles.boldLabel);
+            EditorGUILayout.Space(10);
             EditorGUILayout.PropertyField(_flinchEffect, new GUIContent("Flinch Effect"));
             EditorGUILayout.PropertyField(_healEffect, new GUIContent("Heal Effect"));
             EditorGUILayout.PropertyField(_winceEffect, new GUIContent("Wince Effect"));
@@ -140,7 +154,7 @@ public class HealthDataEditor : Editor
         }
         
 
-        EditorGUILayout.Space(20);
+        EditorGUILayout.Space(40);
         EditorGUILayout.LabelField("General Stats Settings", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(_affectStats, new GUIContent("Affect Stats"));
         if (_affectStats.boolValue == true)
@@ -148,11 +162,34 @@ public class HealthDataEditor : Editor
             EditorGUI.indentLevel++;
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Advanced Stats Settings", EditorStyles.boldLabel);
+            EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Movement", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(_movementSpeed, new GUIContent("Movement Speed"));
-            _slowIntensity.floatValue = EditorGUILayout.Slider(1, 1, 10);
+            if (_movementSpeed.boolValue == true)
+            {
+                EditorGUILayout.Space(10);
+                EditorGUI.indentLevel++;
+                _slowIntensity.floatValue = EditorGUILayout.Slider("Slow Intensity",_slowIntensity.floatValue, 1, 10);
+
+            }
+        }
+        EditorGUILayout.Space(40);
+
+        EditorGUILayout.LabelField("General SFX Settings", EditorStyles.boldLabel);
+        EditorGUILayout.PropertyField(_soundEffects, new GUIContent("SFX"));
+        if (_soundEffects.boolValue == true)
+        {
+            EditorGUI.indentLevel++;
+            EditorGUILayout.Space(10);
+            EditorGUILayout.LabelField("Advanced SFX Settings", EditorStyles.boldLabel);
+            EditorGUILayout.Space(10);
+            EditorGUILayout.PropertyField(_flinchSfx, new GUIContent("Flinch SFX"));
+            EditorGUILayout.PropertyField(_medkitSfx, new GUIContent("Medkit SFX"));
+            EditorGUILayout.PropertyField(_bandageSfx, new GUIContent("Bandage SFX"));
+            EditorGUILayout.PropertyField(_splintSfx, new GUIContent("Splint SFX"));
         }
         
+
 
         serializedObject.ApplyModifiedProperties();
     }
