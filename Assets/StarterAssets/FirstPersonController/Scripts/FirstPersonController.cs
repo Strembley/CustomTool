@@ -9,6 +9,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM
 	[RequireComponent(typeof(PlayerInput))]
 #endif
+	[System.Serializable]
 	public class FirstPersonController : MonoBehaviour
 	{
 		[Header("Player")]

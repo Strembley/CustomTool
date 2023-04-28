@@ -74,6 +74,11 @@ public class PlayerHealthManager : MonoBehaviour
         SetHealth(_currentHealth);
     }
 
+    public void HealHealth(float heal) 
+    {
+        _currentHealth += heal;
+    }
+
     public void SetMaxHealth(float maxHealth)
     {
         slider.maxValue = maxHealth;
