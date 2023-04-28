@@ -10,7 +10,7 @@ public class HealthDataEditor : Editor
     private SerializedProperty _maxHealth;
     private SerializedProperty _bleedOut;
     private SerializedProperty _bleedDamage;
-    private SerializedProperty _bleedIntensity;
+    private SerializedProperty _bleedDelay;
     private SerializedProperty _limbLoss;
     private SerializedProperty _arms;
     private SerializedProperty _legs;
@@ -41,7 +41,7 @@ public class HealthDataEditor : Editor
         _maxHealth = serializedObject.FindProperty("_maxHealth");
         _bleedOut = serializedObject.FindProperty("_bleedOut");
         _bleedDamage = serializedObject.FindProperty("_bleedDamage");
-        _bleedIntensity = serializedObject.FindProperty("_bleedIntensity");
+        _bleedDelay = serializedObject.FindProperty("_bleedDelay");
         _limbLoss = serializedObject.FindProperty("_limbLoss");
         _arms = serializedObject.FindProperty("_arms");
         _legs = serializedObject.FindProperty("_legs");
@@ -90,7 +90,7 @@ public class HealthDataEditor : Editor
             EditorGUILayout.LabelField("Advanced Bleed Settings", EditorStyles.boldLabel);
             EditorGUILayout.Space(10);
             EditorGUILayout.PropertyField(_bleedDamage, new GUIContent("Bleed Damage"));
-            _bleedIntensity.floatValue = EditorGUILayout.Slider("Bleed Intensity",_bleedIntensity.floatValue, 1, 10);
+            EditorGUILayout.PropertyField(_bleedDelay, new GUIContent("Bleed Delay"));
         }
        
         EditorGUILayout.Space(40);

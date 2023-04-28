@@ -24,14 +24,13 @@ public class  HealthData : ScriptableObject
 
     [SerializeField]
     [Tooltip("Health Lost due to bleeding per second")]
-    private float _bleedDamage = .02f;
+    private float _bleedDamage = .2f;
     public float BleedDamage => _bleedDamage;
 
     [SerializeField]
-    [Range(1,5)]
     [Tooltip("Increases Rate of bleeding based on bleedDamage")]
-    private float _bleedIntensity;
-    public float BleedIntensity => _bleedIntensity;
+    private float _bleedDelay;
+    public float BleedDelay => _bleedDelay;
 
     //[Separator(1, 20)]
 

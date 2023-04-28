@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Health&EffectsData_
   m_EditorClassIdentifier: 
   _maxHealth: 100
-  _bleedOut: 0
-  _bleedDamage: 0.02
-  _bleedIntensity: 1
+  _bleedOut: 1
+  _bleedDamage: 0.2
+  _bleedDelay: 1
   _limbLoss: 0
   _arms: 0
   _legs: 0
