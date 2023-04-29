@@ -35,6 +35,7 @@ public class HealthDataEditor : Editor
     private SerializedProperty _medkitSfx;
     private SerializedProperty _bandageSfx;
     private SerializedProperty _splintSfx;
+    private SerializedProperty _concussionSfx;
 
     private void OnEnable()
     {
@@ -66,6 +67,7 @@ public class HealthDataEditor : Editor
         _medkitSfx = serializedObject.FindProperty("_medkitSfx");
         _bandageSfx = serializedObject.FindProperty("_bandageSfx");
         _splintSfx = serializedObject.FindProperty("_splintSfx");
+        _concussionSfx = serializedObject.FindProperty("_concussionSfx");
     }
 
     public override void OnInspectorGUI()
@@ -187,6 +189,7 @@ public class HealthDataEditor : Editor
             EditorGUILayout.PropertyField(_medkitSfx, new GUIContent("Medkit SFX"));
             EditorGUILayout.PropertyField(_bandageSfx, new GUIContent("Bandage SFX"));
             EditorGUILayout.PropertyField(_splintSfx, new GUIContent("Splint SFX"));
+            EditorGUILayout.PropertyField(_concussionSfx, new GUIContent("Concussion SFX"));
         }
         
 

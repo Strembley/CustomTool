@@ -31,7 +31,7 @@ public class PlayerHealthManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(_currentHealth);
+        //Debug.Log(_currentHealth);
         if (_bleeding)
         {
             if (Time.time > lastDamageTime + _healthData.BleedDelay)
