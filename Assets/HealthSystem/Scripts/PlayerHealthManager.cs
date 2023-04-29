@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class PlayerHealthManager : MonoBehaviour
 {
     [SerializeField] private HealthData _healthData;
-    [SerializeField] private bool _bleeding;
+    [SerializeField] public bool _bleeding;
 
     private float lastDamageTime;
 
@@ -99,11 +99,13 @@ public class PlayerHealthManager : MonoBehaviour
 
     public void StartBleed() 
     {
+        Debug.Log("Bleeding Started");
         _bleeding = true;
     }
 
     public void StopBleed() 
     {
+        Debug.Log("Bleeding Stopped");
         _bleeding = false;
     }
 }

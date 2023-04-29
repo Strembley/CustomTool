@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Health&EffectsData_
   m_EditorClassIdentifier: 
   _maxHealth: 100
-  _bleedOut: 0
-  _bleedDamage: 0.2
+  _bleedOut: 1
+  _bleedDamage: 0.4
   _bleedDelay: 1
   _limbLoss: 0
   _arms: 0
@@ -32,9 +32,9 @@ MonoBehaviour:
   _healEffect: 1
   _winceEffect: 1
   _concussionEffect: 1
-  _soundEffects: 1
-  _flinchSfx: 0
-  _medkitSfx: 0
-  _bandageSfx: 0
-  _splintSfx: 0
-  _concussionSfx: 0
+  _soundEffects: 0
+  _flinchSfx: 1
+  _medkitSfx: 1
+  _bandageSfx: 1
+  _splintSfx: 1
+  _concussionSfx: 1

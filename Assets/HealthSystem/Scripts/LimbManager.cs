@@ -9,6 +9,13 @@ public class LimbManager : MonoBehaviour
     private ScreenFxManager _screenFxManager;
     private SfxManager _sfxManager;
 
+
+
+    public bool _legBroken;
+    public bool _armBroken;
+    public bool _headBroken;
+
+
     public UnityEvent OnArmBreak;
     public UnityEvent OnLegBreak;
     public UnityEvent OnHeadBreak;
@@ -20,6 +27,7 @@ public class LimbManager : MonoBehaviour
     {
         if (_healthData.Arms)
         {
+            _armBroken = true;
             OnArmBreak.Invoke();
 
             //Check What Order To Play Effects
@@ -31,7 +39,7 @@ public class LimbManager : MonoBehaviour
             {
                 _screenFxManager.FlinchStart();
             }
-            else
+            else if (_healthData.FlinchSfx && _healthData.FlinchEffect)
             {
                 _screenFxManager.FlinchStart();
             }
@@ -43,6 +51,7 @@ public class LimbManager : MonoBehaviour
     {
         if (_healthData.Legs)
         {
+            _legBroken = true;
             OnLegBreak.Invoke();
             //Check What Order To Play Effects
             if (_healthData.FlinchSfx && !_healthData.FlinchEffect)
@@ -53,7 +62,7 @@ public class LimbManager : MonoBehaviour
             {
                 _screenFxManager.FlinchStart();
             }
-            else
+            else if (_healthData.FlinchSfx && _healthData.FlinchEffect)
             {
                 _screenFxManager.FlinchStart();
             }
@@ -66,6 +75,7 @@ public class LimbManager : MonoBehaviour
     {
         if (_healthData.Head)
         {
+            _headBroken = true;
             OnHeadBreak.Invoke();
 
             //Check What Order To Play Effects
@@ -77,7 +87,7 @@ public class LimbManager : MonoBehaviour
             {
                 _screenFxManager.ConcussionStart();
             }
-            else
+            else if (_healthData.FlinchSfx && _healthData.FlinchEffect)
             {
                 _screenFxManager.ConcussionStart();
             }
@@ -90,6 +100,7 @@ public class LimbManager : MonoBehaviour
     {
         if (_healthData.Arms)
         {
+            _armBroken = false;
             OnArmFix.Invoke();
         }
     }
@@ -98,6 +109,7 @@ public class LimbManager : MonoBehaviour
     {
         if (_healthData.Legs)
         {
+            _legBroken = false;
             OnLegFix.Invoke();
         }
     }
@@ -106,6 +118,7 @@ public class LimbManager : MonoBehaviour
     {
         if (_healthData.Head)
         {
+            _headBroken = false;
             OnHeadFix.Invoke();
         }
     }

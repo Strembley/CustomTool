@@ -25,6 +25,7 @@ public class FirstAidManager : MonoBehaviour
     {
         if (_healthData.FirstAid)
         {
+            Debug.Log("Medkit Used");
             _playerHealthManager.HealHealth(_healthData.MedkitHealAmount);
             OnMedkitUse.Invoke();
             //Check What Order To Play Effects
@@ -36,7 +37,7 @@ public class FirstAidManager : MonoBehaviour
             {
                 _screenFxManager.HealStart("Medkit");
             }
-            else
+            else if (_healthData.MedkitSfx && _healthData.HealEffect)
             {
                 _screenFxManager.HealStart("Medkit");
             }
@@ -55,6 +56,7 @@ public class FirstAidManager : MonoBehaviour
     {
         if (_healthData.FirstAid)
         {
+            Debug.Log("Bandage Used");
             _bandagesUsed++;
             OnBandageUse.Invoke();
             _playerHealthManager.HealHealth(_healthData.BandageHealAmount);
@@ -68,7 +70,7 @@ public class FirstAidManager : MonoBehaviour
             {
                 _screenFxManager.HealStart("Bandage");
             }
-            else
+            else if (_healthData.BandageSfx && _healthData.HealEffect)
             {
                 _screenFxManager.HealStart("Bandage");
             }
@@ -86,6 +88,7 @@ public class FirstAidManager : MonoBehaviour
     {
         if (_healthData.FirstAid)
         {
+            Debug.Log("Splint Used");
             _splintsUsed++;
             OnSplintUse.Invoke();
             _playerHealthManager.HealHealth(_healthData.SplintHealAmount);
@@ -99,7 +102,7 @@ public class FirstAidManager : MonoBehaviour
             {
                 _screenFxManager.HealStart("Splint");
             }
-            else
+            else if (_healthData.SplintSfx && _healthData.HealEffect)
             {
                 _screenFxManager.HealStart("Splint");
             }
@@ -107,6 +110,8 @@ public class FirstAidManager : MonoBehaviour
             if (_splintsUsed > _healthData.FixLimbCount)
             {
                 _limbManager.FixLeg();
+                _limbManager.FixArm();
+                _limbManager.FixHead();
                 _splintsUsed = 0;
             }
         }

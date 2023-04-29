@@ -18,6 +18,7 @@ public class SfxManager : MonoBehaviour
     {
         if (_healthData.FlinchSfx)
         {
+            Debug.Log("Flinch SFX Start");
             _audioManager.PlaySong(_flinchSfx);
         }
     }
@@ -26,6 +27,7 @@ public class SfxManager : MonoBehaviour
     {
         if (_healthData.MedkitSfx)
         {
+            Debug.Log("Medkit SFX Start");
             _audioManager.PlaySong(_medkitSfx);
         }
     }
@@ -34,6 +36,7 @@ public class SfxManager : MonoBehaviour
     {
         if (_healthData.BandageSfx)
         {
+            Debug.Log("Bandage SFX Start");
             _audioManager.PlaySong(_bandageSfx);
         }
     }
@@ -42,6 +45,7 @@ public class SfxManager : MonoBehaviour
     {
         if (_healthData.SplintSfx)
         {
+            Debug.Log("Splint SFX Start");
             _audioManager.PlaySong(_splintSfx);
         }
     }
@@ -50,6 +54,7 @@ public class SfxManager : MonoBehaviour
     {
         if (_healthData.ConcussionSfx)
         {
+            Debug.Log("Concussion SFX Start");
             _audioManager.PlaySong(_concussionSfx);
         }
     }

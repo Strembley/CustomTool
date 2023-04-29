@@ -480,12 +480,12 @@ PrefabInstance:
     - target: {fileID: 9005220659476430821, guid: 2d3a85ecde41a8246a79669975912b74,
         type: 3}
       propertyPath: far clip plane
-      value: 5000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430821, guid: 2d3a85ecde41a8246a79669975912b74,
         type: 3}
       propertyPath: near clip plane
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430823, guid: 2d3a85ecde41a8246a79669975912b74,
         type: 3}
@@ -575,6 +575,9 @@ MonoBehaviour:
   _healthData: {fileID: 11400000, guid: f3dba35f6b6f65843b95ad76592dcb0e, type: 2}
   _cameraShake: {fileID: 1705802303}
   _flinch: {fileID: 11400000, guid: 09e4fdcc02d96384cba270f570a0d37f, type: 2}
+  _heal: {fileID: 0}
+  _wince: {fileID: 0}
+  _concussion: {fileID: 0}
 --- !u!114 &435099568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,6 +590,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14712a24d0fe5924fa997a23d083a5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _legBroken: 0
+  _armBroken: 0
+  _headBroken: 0
   OnArmBreak:
     m_PersistentCalls:
       m_Calls: []
@@ -646,6 +652,18 @@ MonoBehaviour:
   _bandageSfx: {fileID: 8300000, guid: 7a3903ac3dcd4604c9395ea7db8fa553, type: 3}
   _splintSfx: {fileID: 8300000, guid: 3d38ab7836394e14fb4303486d8be7cb, type: 3}
   _concussionSfx: {fileID: 8300000, guid: 2c0480f0940b72e4d802cea09fbf0450, type: 3}
+--- !u!114 &435099581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40094015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f5f004b5a2d4449ac6a50979b1ced3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &449371149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1744,7 +1762,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 100
+  m_Priority: 0
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
