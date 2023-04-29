@@ -11,7 +11,7 @@ public class FirstAidManager : MonoBehaviour
 
     private PlayerHealthManager _playerHealthManager;
     private LimbManager _limbManager;
-
+    private SfxManager _sfxManager;
 
     private int _bandagesUsed;
     private int _splintsUsed;
@@ -22,41 +22,61 @@ public class FirstAidManager : MonoBehaviour
 
     public void UseMedkit() 
     {
-        OnMedkitUse.Invoke();
-        if (_healthData.StopBleeding)
+        if (_healthData.FirstAid)
         {
-            _playerHealthManager.StopBleed();
-            _playerHealthManager.HealHealth(_healthData.MedkitHealAmount);
+            OnMedkitUse.Invoke();
+            if (_healthData.StopBleeding)
+            {
+                _playerHealthManager.StopBleed();
+                _playerHealthManager.HealHealth(_healthData.MedkitHealAmount);
+                if (_healthData.MedkitSfx)
+                {
+                    _sfxManager.MedkitSfxStart();
+                }
+            }
+            else
+            {
+                _playerHealthManager.HealHealth(_healthData.MedkitHealAmount);
+            }
         }
-        else 
-        {
-            _playerHealthManager.HealHealth(_healthData.MedkitHealAmount);
-        }
+        
     }
 
     public void UseBandage()
     {
-        _bandagesUsed++;
-        OnBandageUse.Invoke();
-        _playerHealthManager.HealHealth(_healthData.BandageHealAmount);
-        if (_bandagesUsed > _healthData.StopBleedCount)
+        if (_healthData.FirstAid)
         {
-            _playerHealthManager.StopBleed();
-            _bandagesUsed = 0;
+            _bandagesUsed++;
+            OnBandageUse.Invoke();
+            _playerHealthManager.HealHealth(_healthData.BandageHealAmount);
+            if (_healthData.BandageSfx)
+            {
+                _sfxManager.BandageSfxStart();
+            }
+            if (_bandagesUsed > _healthData.StopBleedCount)
+            {
+                _playerHealthManager.StopBleed();
+                _bandagesUsed = 0;
+            }
         }
-
     }
 
     public void UseSplint()
     {
-        _splintsUsed++;
-        OnSplintUse.Invoke();
-        _playerHealthManager.HealHealth(_healthData.SplintHealAmount);
-        if (_splintsUsed > _healthData.FixLimbCount)
+        if (_healthData.FirstAid)
         {
-            _limbManager.FixLeg();
-            _splintsUsed = 0;
+            _splintsUsed++;
+            OnSplintUse.Invoke();
+            _playerHealthManager.HealHealth(_healthData.SplintHealAmount);
+            if (_healthData.SplintSfx)
+            {
+                _sfxManager.SplintSfxStart();
+            }
+            if (_splintsUsed > _healthData.FixLimbCount)
+            {
+                _limbManager.FixLeg();
+                _splintsUsed = 0;
+            }
         }
     }
-
 }

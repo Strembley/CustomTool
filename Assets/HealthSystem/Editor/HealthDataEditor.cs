@@ -155,7 +155,7 @@ public class HealthDataEditor : Editor
             EditorGUILayout.PropertyField(_concussionEffect, new GUIContent("Concussion Effect"));
         }
         
-
+        /*
         EditorGUILayout.Space(40);
         EditorGUILayout.LabelField("General Stats Settings", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(_affectStats, new GUIContent("Affect Stats"));
@@ -175,6 +175,7 @@ public class HealthDataEditor : Editor
 
             }
         }
+        */
         EditorGUILayout.Space(40);
 
         EditorGUILayout.LabelField("General SFX Settings", EditorStyles.boldLabel);

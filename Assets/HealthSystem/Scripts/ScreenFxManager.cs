@@ -11,13 +11,16 @@ public class ScreenFxManager : MonoBehaviour
     [SerializeField] private CameraShake _cameraShake;
 
 
-    [SerializeField] private  NoiseSettings _flinch;
+    [SerializeField] private NoiseSettings _flinch;
+    [SerializeField] private NoiseSettings _heal;
+    [SerializeField] private NoiseSettings _wince;
+    [SerializeField] private NoiseSettings _concussion;
 
     private SfxManager _sfxManager;
 
     void Start()
     {
-        ConcussionStart();
+        //ConcussionStart();
         FlinchStart();
     }
 
@@ -39,9 +42,9 @@ public class ScreenFxManager : MonoBehaviour
         if (_healthData.HealEffect)
         {
 
+            //_cameraShake.StartShakeAndBlur();
 
 
-            
         }
     }
 
@@ -49,8 +52,8 @@ public class ScreenFxManager : MonoBehaviour
     {
         if (_healthData.WinceEffect)
         {
-            
 
+            //_cameraShake.StartShakeAndBlur();
 
         }
     }

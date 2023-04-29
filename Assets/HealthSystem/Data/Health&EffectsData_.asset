@@ -27,15 +27,12 @@ MonoBehaviour:
   _bandageHealAmount: 0
   _fixLimbCount: 1
   _splintHealAmount: 0
-  _screenEffects: 1
+  _screenEffects: 0
   _flinchEffect: 1
   _healEffect: 1
   _winceEffect: 1
   _concussionEffect: 1
-  _affectStats: 0
-  _movementSpeed: 0
-  _slowIntensity: 1
-  _soundEffects: 0
+  _soundEffects: 1
   _flinchSfx: 0
   _medkitSfx: 0
   _bandageSfx: 0

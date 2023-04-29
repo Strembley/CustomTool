@@ -32,17 +32,21 @@ public class PlayerHealthManager : MonoBehaviour
     private void Update()
     {
         //Debug.Log(_currentHealth);
-        if (_bleeding)
+        if (_healthData.BleedOut)
         {
-            if (Time.time > lastDamageTime + _healthData.BleedDelay)
+            if (_bleeding)
             {
-                // Damage the player
-                TakeDamage(_healthData.BleedDamage);
-                // Update the last damage time
-                lastDamageTime = Time.time;
-                
+                if (Time.time > lastDamageTime + _healthData.BleedDelay)
+                {
+                    // Damage the player
+                    TakeDamage(_healthData.BleedDamage);
+                    // Update the last damage time
+                    lastDamageTime = Time.time;
+
+                }
             }
         }
+        
     }
     private void OnTriggerEnter(Collider other)
     {

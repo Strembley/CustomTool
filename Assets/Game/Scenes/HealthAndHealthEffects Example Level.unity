@@ -641,11 +641,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthData: {fileID: 11400000, guid: f3dba35f6b6f65843b95ad76592dcb0e, type: 2}
   _audioManager: {fileID: 1903428237}
-  _flinchSfx: {fileID: 0}
-  _medkitSfx: {fileID: 0}
-  _bandageSfx: {fileID: 0}
-  _splintSfx: {fileID: 0}
-  _concussionSfx: {fileID: 0}
+  _flinchSfx: {fileID: 8300000, guid: c43b365123d13764fb034d6b23d6615e, type: 3}
+  _medkitSfx: {fileID: 8300000, guid: ba23b14701952044caad3b67fcdc0d58, type: 3}
+  _bandageSfx: {fileID: 8300000, guid: 7a3903ac3dcd4604c9395ea7db8fa553, type: 3}
+  _splintSfx: {fileID: 8300000, guid: 3d38ab7836394e14fb4303486d8be7cb, type: 3}
+  _concussionSfx: {fileID: 8300000, guid: 2c0480f0940b72e4d802cea09fbf0450, type: 3}
 --- !u!1001 &449371149
 PrefabInstance:
   m_ObjectHideFlags: 0

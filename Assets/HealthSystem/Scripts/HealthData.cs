@@ -60,27 +60,27 @@ public class  HealthData : ScriptableObject
     // FirstAid
 
     [SerializeField]
-    [Tooltip("Whether or not the player has the ability to use FirstAid Items")]
+    [Tooltip("Whether or not the player has the ability to use First Aid Items")]
     private bool _firstAid = false;
     public bool FirstAid => _firstAid;
 
     [SerializeField]
-    [Tooltip("Whether or not using a medkit will stop player bleeding")]
+    [Tooltip("Whether or not using a Medkit will stop player Bleeding")]
     private bool _stopBleeding = false;
     public bool StopBleeding => _stopBleeding;
 
     [SerializeField]
-    [Tooltip("Amount of health recovered from using a medkit")]
+    [Tooltip("Amount of health recovered from using a Medkit")]
     private float _medkitHealAmount = 20;
     public float MedkitHealAmount => _medkitHealAmount;
 
     [SerializeField]
-    [Tooltip("Required number of Bandages to stop bleeding")]
+    [Tooltip("Required number of Bandages to stop Bleeding")]
     private int _stopBleedCount = 1;
     public int StopBleedCount => _stopBleedCount;
 
     [SerializeField]
-    [Tooltip("Amount of health recovered from using a bandage")]
+    [Tooltip("Amount of health recovered from using a Bandage")]
     private float _bandageHealAmount = 0;
     public float BandageHealAmount => _bandageHealAmount;
 
@@ -90,7 +90,7 @@ public class  HealthData : ScriptableObject
     public int FixLimbCount => _fixLimbCount;
 
     [SerializeField]
-    [Tooltip("Amount of health recovered from using a splint")]
+    [Tooltip("Amount of health recovered from using a Splint")]
     private float _splintHealAmount = 0;
     public float SplintHealAmount => _splintHealAmount;
 
@@ -109,7 +109,7 @@ public class  HealthData : ScriptableObject
     public bool FlinchEffect => _flinchEffect;
 
     [SerializeField]
-    [Tooltip("Whether or not the players screen will flash on use of FirstAid")]
+    [Tooltip("Whether or not the players screen will flash on use of First Aid")]
     private bool _healEffect = false;
     public bool HealEffect => _healEffect;
 
@@ -124,8 +124,9 @@ public class  HealthData : ScriptableObject
     public bool ConcussionEffect => _concussionEffect;
 
     //[Separator(1, 20)]
-    // Stats
 
+    // Stats
+    /*
     [SerializeField]
     [Tooltip("Wether or not the players stats will be affected by different damage states")]
     private bool _affectStats = false;
@@ -141,11 +142,12 @@ public class  HealthData : ScriptableObject
     [Tooltip("The Intensity at which the player is slowed (Varies by Health Amount)")]
     private float _slowIntensity = 1;
     public float SlowIntensity => _slowIntensity;
+    */
 
     //SFX
 
     [SerializeField]
-    [Tooltip("Whether or not the player will experience SFX Based On Health Related Events")]
+    [Tooltip("Whether or not the player will experience SFX based on Health related events")]
     private bool _soundEffects = false;
     public bool SoundEffects => _soundEffects;
 
