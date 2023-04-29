@@ -12,6 +12,7 @@ public class FirstAidManager : MonoBehaviour
     private PlayerHealthManager _playerHealthManager;
     private LimbManager _limbManager;
     private SfxManager _sfxManager;
+    private ScreenFxManager _screenFxManager;
 
     private int _bandagesUsed;
     private int _splintsUsed;
@@ -24,20 +25,28 @@ public class FirstAidManager : MonoBehaviour
     {
         if (_healthData.FirstAid)
         {
+            _playerHealthManager.HealHealth(_healthData.MedkitHealAmount);
             OnMedkitUse.Invoke();
-            if (_healthData.StopBleeding)
+            //Check What Order To Play Effects
+            if (_healthData.MedkitSfx && !_healthData.HealEffect)
             {
-                _playerHealthManager.StopBleed();
-                _playerHealthManager.HealHealth(_healthData.MedkitHealAmount);
-                if (_healthData.MedkitSfx)
-                {
-                    _sfxManager.MedkitSfxStart();
-                }
+                _sfxManager.MedkitSfxStart();
+            }
+            else if (!_healthData.MedkitSfx && _healthData.HealEffect)
+            {
+                _screenFxManager.HealStart("Medkit");
             }
             else
             {
-                _playerHealthManager.HealHealth(_healthData.MedkitHealAmount);
+                _screenFxManager.HealStart("Medkit");
             }
+            
+
+            if (_healthData.StopBleeding)
+            {
+                _playerHealthManager.StopBleed();
+            }
+
         }
         
     }
@@ -49,10 +58,22 @@ public class FirstAidManager : MonoBehaviour
             _bandagesUsed++;
             OnBandageUse.Invoke();
             _playerHealthManager.HealHealth(_healthData.BandageHealAmount);
-            if (_healthData.BandageSfx)
+
+            //Check What Order To Play Effects
+            if (_healthData.BandageSfx && !_healthData.HealEffect)
             {
                 _sfxManager.BandageSfxStart();
             }
+            else if (!_healthData.BandageSfx && _healthData.HealEffect)
+            {
+                _screenFxManager.HealStart("Bandage");
+            }
+            else
+            {
+                _screenFxManager.HealStart("Bandage");
+            }
+
+
             if (_bandagesUsed > _healthData.StopBleedCount)
             {
                 _playerHealthManager.StopBleed();
@@ -68,10 +89,21 @@ public class FirstAidManager : MonoBehaviour
             _splintsUsed++;
             OnSplintUse.Invoke();
             _playerHealthManager.HealHealth(_healthData.SplintHealAmount);
-            if (_healthData.SplintSfx)
+
+            //Check What Order To Play Effects
+            if (_healthData.SplintSfx && !_healthData.HealEffect)
             {
                 _sfxManager.SplintSfxStart();
             }
+            else if (!_healthData.SplintSfx && _healthData.HealEffect)
+            {
+                _screenFxManager.HealStart("Splint");
+            }
+            else
+            {
+                _screenFxManager.HealStart("Splint");
+            }
+
             if (_splintsUsed > _healthData.FixLimbCount)
             {
                 _limbManager.FixLeg();

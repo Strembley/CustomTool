@@ -37,12 +37,36 @@ public class ScreenFxManager : MonoBehaviour
         }
     }
 
-    public void HealStart() 
+    public void HealStart(string healType) 
     {
         if (_healthData.HealEffect)
         {
+            //_cameraShake.StartShakeAndBlur(_heal);
 
-            //_cameraShake.StartShakeAndBlur();
+            //Check Heal Type and Play Correct Sound
+            if (healType == "Medkit")
+            {
+                if (_healthData.MedkitSfx)
+                {
+                    _sfxManager.MedkitSfxStart();
+                }
+            }
+            else if (healType == "Bandage")
+            {
+                if (_healthData.BandageSfx)
+                {
+                    _sfxManager.BandageSfxStart();
+                }
+            }
+            else if (healType == "Splint") 
+            {
+                if (_healthData.SplintSfx)
+                {
+                    _sfxManager.SplintSfxStart();
+                }
+            }
+            
+            
 
 
         }
@@ -53,7 +77,7 @@ public class ScreenFxManager : MonoBehaviour
         if (_healthData.WinceEffect)
         {
 
-            //_cameraShake.StartShakeAndBlur();
+            //_cameraShake.StartShakeAndBlur(_wince);
 
         }
     }
@@ -62,7 +86,7 @@ public class ScreenFxManager : MonoBehaviour
     {
         if (_healthData.ConcussionEffect)
         {
-            //_cameraShake.StartShakeAndBlur();
+            //_cameraShake.StartShakeAndBlur(concussion);
             if (_healthData.ConcussionEffect)
             {
                 _sfxManager.ConcussionSfxStart();

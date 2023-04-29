@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class LimbManager : MonoBehaviour
 {
     private HealthData _healthData;
+    private ScreenFxManager _screenFxManager;
+    private SfxManager _sfxManager;
 
     public UnityEvent OnArmBreak;
     public UnityEvent OnLegBreak;
@@ -19,9 +21,19 @@ public class LimbManager : MonoBehaviour
         if (_healthData.Arms)
         {
             OnArmBreak.Invoke();
-            if (_healthData.ScreenEffects)
-            {
 
+            //Check What Order To Play Effects
+            if (_healthData.FlinchSfx && !_healthData.FlinchEffect)
+            {
+                _sfxManager.FlinchSfxStart();
+            }
+            else if (!_healthData.FlinchSfx && _healthData.FlinchEffect)
+            {
+                _screenFxManager.FlinchStart();
+            }
+            else
+            {
+                _screenFxManager.FlinchStart();
             }
 
         }
@@ -32,9 +44,18 @@ public class LimbManager : MonoBehaviour
         if (_healthData.Legs)
         {
             OnLegBreak.Invoke();
-            if (_healthData.ScreenEffects)
+            //Check What Order To Play Effects
+            if (_healthData.FlinchSfx && !_healthData.FlinchEffect)
             {
-
+                _sfxManager.FlinchSfxStart();
+            }
+            else if (!_healthData.FlinchSfx && _healthData.FlinchEffect)
+            {
+                _screenFxManager.FlinchStart();
+            }
+            else
+            {
+                _screenFxManager.FlinchStart();
             }
 
 
@@ -46,9 +67,19 @@ public class LimbManager : MonoBehaviour
         if (_healthData.Head)
         {
             OnHeadBreak.Invoke();
-            if (_healthData.ScreenEffects)
-            {
 
+            //Check What Order To Play Effects
+            if (_healthData.ConcussionSfx && !_healthData.ConcussionEffect)
+            {
+                _sfxManager.ConcussionSfxStart();
+            }
+            else if (!_healthData.ConcussionSfx && _healthData.ConcussionEffect)
+            {
+                _screenFxManager.ConcussionStart();
+            }
+            else
+            {
+                _screenFxManager.ConcussionStart();
             }
 
 
