@@ -14,6 +14,7 @@ public class TestingController : MonoBehaviour
         _limbManager = GetComponent<LimbManager>();
         _firstAidManager = GetComponent<FirstAidManager>();
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,16 +35,13 @@ public class TestingController : MonoBehaviour
             {
                 _playerHealthManager.StartBleed();
             }
-            else
-            {
-                _playerHealthManager.StopBleed();
-            }
+           
 
         }
 
 
 
-        //-------------------------Limb Controls------------------------//
+        //-------------------------Limb Controls/First Aid------------------------//
 
         // (L) Break Leg
         if (Keyboard.current.lKey.wasPressedThisFrame)
@@ -76,7 +74,7 @@ public class TestingController : MonoBehaviour
         }
 
 
-        // (p) Break Head
+        // (P) Break Head
         if (Keyboard.current.pKey.wasPressedThisFrame)
         {
             if (!_limbManager._headBroken)
@@ -89,6 +87,25 @@ public class TestingController : MonoBehaviour
             }
 
         }
+
+        // (N) Bandage
+        if (Keyboard.current.nKey.wasPressedThisFrame)
+        {
+            if (_playerHealthManager._bleeding)
+            {
+                _firstAidManager.UseBandage();
+            }
+           
+
+        }
+
+
+        // (M) Medkit
+        if (Keyboard.current.mKey.wasPressedThisFrame)
+        {
+            _firstAidManager.UseMedkit();
+        }
+
 
         //-------------------------???? Controls------------------------//a
 

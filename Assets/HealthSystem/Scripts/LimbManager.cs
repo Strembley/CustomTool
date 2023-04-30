@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class LimbManager : MonoBehaviour
 {
-    private HealthData _healthData;
+    [SerializeField] private HealthData _healthData;
     private ScreenFxManager _screenFxManager;
     private SfxManager _sfxManager;
 
@@ -23,6 +23,12 @@ public class LimbManager : MonoBehaviour
     public UnityEvent OnLegFix;
     public UnityEvent OnHeadFix;
 
+
+    private void Awake()
+    {
+        _screenFxManager = GetComponent<ScreenFxManager>();
+        _sfxManager = GetComponent<SfxManager>();
+    }
     public void BreakArm() 
     {
         if (_healthData.Arms)

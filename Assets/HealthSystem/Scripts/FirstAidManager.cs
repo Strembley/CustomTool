@@ -21,6 +21,15 @@ public class FirstAidManager : MonoBehaviour
     public UnityEvent OnBandageUse;
     public UnityEvent OnSplintUse;
 
+
+    public void Awake()
+    {
+        _sfxManager = GetComponent<SfxManager>();
+        _playerHealthManager = GetComponent<PlayerHealthManager>();
+        _limbManager = GetComponent<LimbManager>();
+        _screenFxManager = GetComponent<ScreenFxManager>();
+    }
+
     public void UseMedkit() 
     {
         if (_healthData.FirstAid)
@@ -76,7 +85,7 @@ public class FirstAidManager : MonoBehaviour
             }
 
 
-            if (_bandagesUsed > _healthData.StopBleedCount)
+            if (_bandagesUsed >= _healthData.StopBleedCount)
             {
                 _playerHealthManager.StopBleed();
                 _bandagesUsed = 0;
@@ -107,7 +116,7 @@ public class FirstAidManager : MonoBehaviour
                 _screenFxManager.HealStart("Splint");
             }
 
-            if (_splintsUsed > _healthData.FixLimbCount)
+            if (_splintsUsed >= _healthData.FixLimbCount)
             {
                 _limbManager.FixLeg();
                 _limbManager.FixArm();

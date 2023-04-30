@@ -175,4 +175,9 @@ public class  HealthData : ScriptableObject
     [Tooltip("Whether or not the players will experience a SFX on Concussion")]
     private bool _concussionSfx = false;
     public bool ConcussionSfx => _concussionSfx;
+
+    [SerializeField]
+    [Tooltip("Whether or not the players will experience a SFX on Death")]
+    private bool _deathSfx = false;
+    public bool DeathSfx => _deathSfx;
 }

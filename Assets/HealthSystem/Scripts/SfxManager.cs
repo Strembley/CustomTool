@@ -12,7 +12,7 @@ public class SfxManager : MonoBehaviour
     [SerializeField] private AudioClip _bandageSfx;
     [SerializeField] private AudioClip _splintSfx;
     [SerializeField] private AudioClip _concussionSfx;
-
+    [SerializeField] private AudioClip _deathSfx;
 
     public void FlinchSfxStart()
     {
@@ -56,6 +56,15 @@ public class SfxManager : MonoBehaviour
         {
             Debug.Log("Concussion SFX Start");
             _audioManager.PlaySong(_concussionSfx);
+        }
+    }
+
+    public void DeathSfxStart()
+    {
+        if (_healthData.DeathSfx)
+        {
+            Debug.Log("Death SFX Start");
+            _audioManager.PlaySong(_deathSfx);
         }
     }
 }

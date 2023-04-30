@@ -14,27 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _bleedOut: 1
-  _bleedDamage: 0.4
-  _bleedDelay: 1
-  _limbLoss: 0
-  _arms: 0
-  _legs: 0
-  _head: 0
-  _firstAid: 0
-  _stopBleeding: 0
+  _bleedDamage: 0.9
+  _bleedDelay: 0.5
+  _limbLoss: 1
+  _arms: 1
+  _legs: 1
+  _head: 1
+  _firstAid: 1
+  _stopBleeding: 1
   _medkitHealAmount: 20
   _stopBleedCount: 1
   _bandageHealAmount: 0
   _fixLimbCount: 1
   _splintHealAmount: 0
-  _screenEffects: 0
+  _screenEffects: 1
   _flinchEffect: 1
   _healEffect: 1
   _winceEffect: 1
   _concussionEffect: 1
-  _soundEffects: 0
+  _soundEffects: 1
   _flinchSfx: 1
   _medkitSfx: 1
   _bandageSfx: 1
   _splintSfx: 1
   _concussionSfx: 1
+  _deathSfx: 1

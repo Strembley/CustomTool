@@ -8,6 +8,11 @@ using UnityEngine.Events;
 public class PlayerHealthManager : MonoBehaviour
 {
     [SerializeField] private HealthData _healthData;
+    private SfxManager _sfxManager;
+    private StatusManager _statusManager;
+
+
+
     [SerializeField] public bool _bleeding;
 
     private float lastDamageTime;
@@ -22,6 +27,17 @@ public class PlayerHealthManager : MonoBehaviour
     public Image fill;
 
     public UnityEvent OnDamageTaken;
+
+
+
+
+    private void Awake()
+    {
+        _sfxManager = GetComponent<SfxManager>();
+        _statusManager = GetComponent<StatusManager>();
+
+    }
+
 
     private void Start()
     {
@@ -56,18 +72,12 @@ public class PlayerHealthManager : MonoBehaviour
             Debug.Log("Projectile");
             OnDamageTaken.Invoke();
         }
-
-
-
-        if (_currentHealth <= 0)
-        {
-            Die();
-        }
     }
 
     
     private void Die()
     {
+        _sfxManager.DeathSfxStart();
         _deathScreen.SetActive(true);
         _hpBar.SetActive(false);
     }
@@ -76,11 +86,16 @@ public class PlayerHealthManager : MonoBehaviour
     {
         _currentHealth -= damage;
         SetHealth(_currentHealth);
+        if (_currentHealth <= 0)
+        {
+            Die();
+        }
     }
 
     public void HealHealth(float heal) 
     {
         _currentHealth += heal;
+        SetHealth(_currentHealth);
     }
 
     public void SetMaxHealth(float maxHealth)
@@ -100,12 +115,14 @@ public class PlayerHealthManager : MonoBehaviour
     public void StartBleed() 
     {
         Debug.Log("Bleeding Started");
+        _statusManager.ShowText("You are now bleeding");
         _bleeding = true;
     }
 
     public void StopBleed() 
     {
         Debug.Log("Bleeding Stopped");
+        _statusManager.ShowText("You are no longer bleeding");
         _bleeding = false;
     }
 }
