@@ -91,12 +91,8 @@ public class TestingController : MonoBehaviour
         // (N) Bandage
         if (Keyboard.current.nKey.wasPressedThisFrame)
         {
-            if (_playerHealthManager._bleeding)
-            {
-                _firstAidManager.UseBandage();
-            }
            
-
+              _firstAidManager.UseBandage();
         }
 
 

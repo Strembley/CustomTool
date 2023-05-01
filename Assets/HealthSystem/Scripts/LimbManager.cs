@@ -8,6 +8,7 @@ public class LimbManager : MonoBehaviour
     [SerializeField] private HealthData _healthData;
     private ScreenFxManager _screenFxManager;
     private SfxManager _sfxManager;
+    private StatusManager _statusManager;
 
 
 
@@ -28,12 +29,14 @@ public class LimbManager : MonoBehaviour
     {
         _screenFxManager = GetComponent<ScreenFxManager>();
         _sfxManager = GetComponent<SfxManager>();
+        _statusManager = GetComponent<StatusManager>();
     }
     public void BreakArm() 
     {
         if (_healthData.Arms)
         {
             _armBroken = true;
+            _statusManager.QueueMessage("Your arm is broken", Color.red);
             OnArmBreak.Invoke();
 
             //Check What Order To Play Effects
@@ -58,6 +61,7 @@ public class LimbManager : MonoBehaviour
         if (_healthData.Legs)
         {
             _legBroken = true;
+            _statusManager.QueueMessage("Your leg is broken", Color.red);
             OnLegBreak.Invoke();
             //Check What Order To Play Effects
             if (_healthData.FlinchSfx && !_healthData.FlinchEffect)
@@ -82,6 +86,7 @@ public class LimbManager : MonoBehaviour
         if (_healthData.Head)
         {
             _headBroken = true;
+            _statusManager.QueueMessage("Your head is broken", Color.red);
             OnHeadBreak.Invoke();
 
             //Check What Order To Play Effects
@@ -106,8 +111,13 @@ public class LimbManager : MonoBehaviour
     {
         if (_healthData.Arms)
         {
-            _armBroken = false;
-            OnArmFix.Invoke();
+            if (_armBroken == true)
+            {
+                _armBroken = false;
+                _statusManager.QueueMessage("Your arm is fixed", Color.green);
+                OnArmFix.Invoke();
+            }
+            
         }
     }
 
@@ -115,8 +125,13 @@ public class LimbManager : MonoBehaviour
     {
         if (_healthData.Legs)
         {
-            _legBroken = false;
-            OnLegFix.Invoke();
+            if (_legBroken == true)
+            {
+                _legBroken = false;
+                _statusManager.QueueMessage("Your leg is fixed", Color.green);
+                OnLegFix.Invoke();
+            }
+            
         }
     }
 
@@ -124,8 +139,13 @@ public class LimbManager : MonoBehaviour
     {
         if (_healthData.Head)
         {
-            _headBroken = false;
-            OnHeadFix.Invoke();
+            if (_headBroken == true)
+            {
+                _headBroken = false;
+                _statusManager.QueueMessage("Your head is fixed", Color.green);
+                OnHeadFix.Invoke();
+            }
+            
         }
     }
 

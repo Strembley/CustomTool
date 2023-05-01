@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Health&EffectsData_
   m_EditorClassIdentifier: 
   _maxHealth: 100
+  _statusNotifications: 1
   _bleedOut: 1
   _bleedDamage: 0.9
   _bleedDelay: 0.5
@@ -28,6 +29,7 @@ MonoBehaviour:
   _fixLimbCount: 1
   _splintHealAmount: 0
   _screenEffects: 1
+  _screenFlashes: 1
   _flinchEffect: 1
   _healEffect: 1
   _winceEffect: 1

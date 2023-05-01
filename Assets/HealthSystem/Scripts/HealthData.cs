@@ -11,6 +11,12 @@ public class  HealthData : ScriptableObject
     private float _maxHealth = 100;
     public float MaxHealth => _maxHealth;
 
+
+    [SerializeField]
+    [Tooltip("Whether or not status effect Notifications will pop up")]
+    private bool _statusNotifications = false;
+    public bool StatusNotifications => _statusNotifications;
+
     //[Separator(1, 20)]
 
     // Bleed
@@ -103,6 +109,13 @@ public class  HealthData : ScriptableObject
     private bool _screenEffects = false;
     public bool ScreenEffects => _screenEffects;
 
+
+    [SerializeField]
+    [Tooltip("Whether or not the player will experience Screen Flashes based on Damage/Heal Events")]
+    private bool _screenFlashes = false;
+    public bool ScreenFlashes => _screenFlashes;
+
+
     [SerializeField]
     [Tooltip("Whether or not the players screen will flinch on damage taken")]
     private bool _flinchEffect = false;
@@ -114,35 +127,11 @@ public class  HealthData : ScriptableObject
     public bool HealEffect => _healEffect;
 
     [SerializeField]
-    [Tooltip("Whether or not the player screen will wince on limb loss (leg/arm)")]
-    private bool _winceEffect = false;
-    public bool WinceEffect => _winceEffect;
-
-    [SerializeField]
     [Tooltip("Whether or not the player screen will suffer a concussion on limb loss (head)")]
     private bool _concussionEffect = false;
     public bool ConcussionEffect => _concussionEffect;
 
     //[Separator(1, 20)]
-
-    // Stats
-    /*
-    [SerializeField]
-    [Tooltip("Wether or not the players stats will be affected by different damage states")]
-    private bool _affectStats = false;
-    public bool AffectStats => _affectStats;
-
-    [SerializeField]
-    [Tooltip("Wether or not the players movement speed will be affected")]
-    private bool _movementSpeed = false;
-    public bool MovementSpeed => _movementSpeed;
-
-    [SerializeField]
-    [Range(1,10)]
-    [Tooltip("The Intensity at which the player is slowed (Varies by Health Amount)")]
-    private float _slowIntensity = 1;
-    public float SlowIntensity => _slowIntensity;
-    */
 
     //SFX
 

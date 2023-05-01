@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-
+[RequireComponent(typeof(ScreenFlasher))]
 public class ScreenFxManager : MonoBehaviour
 {
     [SerializeField] private HealthData _healthData;
@@ -11,29 +11,34 @@ public class ScreenFxManager : MonoBehaviour
     [SerializeField] private CameraShake _cameraShake;
 
     private SfxManager _sfxManager;
+    private ScreenFlasher _screenFlasher;
 
-    [SerializeField] private NoiseSettings _flinch;
-    [SerializeField] private NoiseSettings _heal;
-    [SerializeField] private NoiseSettings _wince;
-    [SerializeField] private NoiseSettings _concussion;
+    [SerializeField] private NoiseSettings _flinchNoise;
+    [SerializeField] private NoiseSettings _healNoise;
+    [SerializeField] private NoiseSettings _concussionNoise;
+
+    [SerializeField] public GameObject _painPanel;
+    [SerializeField] private GameObject _healPanel;
+    [SerializeField] private GameObject _blindingPanel;
 
 
     private void Awake()
     {
         _sfxManager = GetComponent<SfxManager>();
+        _screenFlasher = GetComponent<ScreenFlasher>();
     }
     void Start()
     {
-        //ConcussionStart();
-        //FlinchStart();
+        
     }
 
     public void FlinchStart() 
     {
+        _screenFlasher.StartFlashing(_blindingPanel, .5f, 2);
         Debug.Log("Flinch ScreenEffect");
         if (_healthData.FlinchEffect)
         {
-            _cameraShake.StartShakeAndBlur(_flinch);
+            _cameraShake.StartShakeAndBlur(_flinchNoise);
 
             if (_healthData.FlinchSfx)
             {
@@ -44,10 +49,12 @@ public class ScreenFxManager : MonoBehaviour
 
     public void HealStart(string healType) 
     {
+        _screenFlasher.StartFlashing(_healPanel, .5f, 2);
         Debug.Log("Heal ScreenEffect");
         if (_healthData.HealEffect)
         {
-            //_cameraShake.StartShakeAndBlur(_heal);
+            _cameraShake.StartShakeAndBlur(_healNoise);
+            _screenFlasher.StartFlashing(_healPanel, .5f, 2);
 
             //Check Heal Type and Play Correct Sound
             if (healType == "Medkit")
@@ -78,26 +85,20 @@ public class ScreenFxManager : MonoBehaviour
         }
     }
 
-    public void WinceStart()
-    {
-        if (_healthData.WinceEffect)
-        {
-            Debug.Log("Wince ScreenEffect");
-            //_cameraShake.StartShakeAndBlur(_wince);
-
-        }
-    }
-
     public void ConcussionStart()
     {
+        _screenFlasher.StartFlashing(_blindingPanel, 1f, 2);
         if (_healthData.ConcussionEffect)
         {
             Debug.Log("Concussion ScreenEffect");
-            //_cameraShake.StartShakeAndBlur(concussion);
+            _cameraShake.StartShakeAndBlur(_concussionNoise);
+            
+            
             if (_healthData.ConcussionEffect)
             {
                 _sfxManager.ConcussionSfxStart();
             }
         }
+        
     }
 }

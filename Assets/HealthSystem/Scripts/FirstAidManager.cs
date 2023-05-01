@@ -13,6 +13,7 @@ public class FirstAidManager : MonoBehaviour
     private LimbManager _limbManager;
     private SfxManager _sfxManager;
     private ScreenFxManager _screenFxManager;
+    private StatusManager _statusManager;
 
     private int _bandagesUsed;
     private int _splintsUsed;
@@ -28,6 +29,8 @@ public class FirstAidManager : MonoBehaviour
         _playerHealthManager = GetComponent<PlayerHealthManager>();
         _limbManager = GetComponent<LimbManager>();
         _screenFxManager = GetComponent<ScreenFxManager>();
+        _statusManager = GetComponent<StatusManager>();
+
     }
 
     public void UseMedkit() 
@@ -35,6 +38,7 @@ public class FirstAidManager : MonoBehaviour
         if (_healthData.FirstAid)
         {
             Debug.Log("Medkit Used");
+            _statusManager.QueueMessage("Medkit Used", Color.green);
             _playerHealthManager.HealHealth(_healthData.MedkitHealAmount);
             OnMedkitUse.Invoke();
             //Check What Order To Play Effects
@@ -67,6 +71,7 @@ public class FirstAidManager : MonoBehaviour
         {
             Debug.Log("Bandage Used");
             _bandagesUsed++;
+            _statusManager.QueueMessage("Bandage Used", Color.green);
             OnBandageUse.Invoke();
             _playerHealthManager.HealHealth(_healthData.BandageHealAmount);
 
@@ -99,6 +104,7 @@ public class FirstAidManager : MonoBehaviour
         {
             Debug.Log("Splint Used");
             _splintsUsed++;
+            _statusManager.QueueMessage("Splint Used", Color.green);
             OnSplintUse.Invoke();
             _playerHealthManager.HealHealth(_healthData.SplintHealAmount);
 

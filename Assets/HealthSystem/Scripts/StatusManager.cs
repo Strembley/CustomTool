@@ -1,11 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StatusManager : MonoBehaviour
 {
     public Text textToLerp;
-    public float lerpTime = 2f; // How long it takes to lerp down
-    public float displayTime = 4f; // How long to display the text before disappearing
+    public float lerpTime = 1f; // How long it takes to lerp down
+    public float displayTime = 2f; // How long to display the text before disappearing
 
     private RectTransform textRectTransform;
     private Vector3 originalPosition;
@@ -14,11 +15,13 @@ public class StatusManager : MonoBehaviour
     private bool lerping = false;
     private bool displaying = false;
 
+    private Queue<TextMessage> messageQueue = new Queue<TextMessage>();
+
     private void Start()
     {
         textRectTransform = textToLerp.GetComponent<RectTransform>();
         originalPosition = textRectTransform.anchoredPosition;
-        targetPosition = originalPosition - new Vector3(0f, 230f, 0f); // Lerp down 200 pixels
+        targetPosition = originalPosition - new Vector3(0f, 230f, 0f); // Lerp down 230 pixels
     }
 
     private void Update()
@@ -39,19 +42,39 @@ public class StatusManager : MonoBehaviour
                 textRectTransform.anchoredPosition = Vector3.Lerp(originalPosition, targetPosition, percentageComplete);
             }
         }
+        else if (messageQueue.Count > 0 && !displaying)
+        {
+            TextMessage textMessage = messageQueue.Dequeue();
+            textToLerp.text = textMessage.message;
+            textToLerp.color = textMessage.color;
+            textRectTransform.anchoredPosition = originalPosition;
+            lerpStartTime = Time.time;
+            lerping = true;
+        }
     }
 
-    public void ShowText(string text)
+    public void QueueMessage(string message, Color color)
     {
-        textToLerp.text = text;
-        textRectTransform.anchoredPosition = originalPosition;
-        lerpStartTime = Time.time;
-        lerping = true;
+        TextMessage textMessage = new TextMessage(message, color);
+        messageQueue.Enqueue(textMessage);
     }
 
     private void HideText()
     {
         textToLerp.text = "";
+        textToLerp.color = Color.white;
         displaying = false;
+    }
+
+    private struct TextMessage
+    {
+        public string message;
+        public Color color;
+
+        public TextMessage(string message, Color color)
+        {
+            this.message = message;
+            this.color = color;
+        }
     }
 }

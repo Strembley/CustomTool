@@ -5,12 +5,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+
 public class PlayerHealthManager : MonoBehaviour
 {
     [SerializeField] private HealthData _healthData;
     private SfxManager _sfxManager;
     private StatusManager _statusManager;
-
+    private ScreenFxManager _screenFxManager;
+    private ScreenFlasher _screenFlasher;
 
 
     [SerializeField] public bool _bleeding;
@@ -35,7 +37,8 @@ public class PlayerHealthManager : MonoBehaviour
     {
         _sfxManager = GetComponent<SfxManager>();
         _statusManager = GetComponent<StatusManager>();
-
+        _screenFxManager = GetComponent<ScreenFxManager>();
+        _screenFlasher = GetComponent<ScreenFlasher>();
     }
 
 
@@ -59,6 +62,13 @@ public class PlayerHealthManager : MonoBehaviour
                     // Update the last damage time
                     lastDamageTime = Time.time;
 
+                }
+            }
+            else
+            {
+                if (_screenFxManager._painPanel.activeSelf)
+                {
+                    _screenFxManager._painPanel.SetActive(false);
                 }
             }
         }
@@ -85,6 +95,7 @@ public class PlayerHealthManager : MonoBehaviour
     public void TakeDamage(float damage) 
     {
         _currentHealth -= damage;
+        _screenFlasher.StartFlashing(_screenFxManager._painPanel, .2f, 2);
         SetHealth(_currentHealth);
         if (_currentHealth <= 0)
         {
@@ -95,6 +106,7 @@ public class PlayerHealthManager : MonoBehaviour
     public void HealHealth(float heal) 
     {
         _currentHealth += heal;
+        _statusManager.QueueMessage("+" + heal + " Health", Color.green);
         SetHealth(_currentHealth);
     }
 
@@ -112,18 +124,26 @@ public class PlayerHealthManager : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
-    public void StartBleed() 
+    public void StartBleed()
     {
+        if (_bleeding == false) 
+        { 
         Debug.Log("Bleeding Started");
-        _statusManager.ShowText("You are now bleeding");
+        _statusManager.QueueMessage("You are now bleeding", Color.red);
         _bleeding = true;
+        }
     }
 
     public void StopBleed() 
     {
-        Debug.Log("Bleeding Stopped");
-        _statusManager.ShowText("You are no longer bleeding");
-        _bleeding = false;
+        if (_bleeding == true)
+        {
+            Debug.Log("Bleeding Stopped");
+            _statusManager.QueueMessage("You are no longer bleeding", Color.green);
+            _bleeding = false;
+        }
+        
+        
     }
 }
 

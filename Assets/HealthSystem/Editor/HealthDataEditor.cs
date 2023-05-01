@@ -8,6 +8,7 @@ public class HealthDataEditor : Editor
 {
    
     private SerializedProperty _maxHealth;
+    private SerializedProperty _statusNotifications;
     private SerializedProperty _bleedOut;
     private SerializedProperty _bleedDamage;
     private SerializedProperty _bleedDelay;
@@ -23,13 +24,10 @@ public class HealthDataEditor : Editor
     private SerializedProperty _fixLimbCount;
     private SerializedProperty _splintHealAmount;
     private SerializedProperty _screenEffects;
+    private SerializedProperty _screenFlashes;
     private SerializedProperty _flinchEffect;
     private SerializedProperty _healEffect;
-    private SerializedProperty _winceEffect;
     private SerializedProperty _concussionEffect;
-    private SerializedProperty _affectStats;
-    private SerializedProperty _movementSpeed;
-    private SerializedProperty _slowIntensity;
     private SerializedProperty _soundEffects;
     private SerializedProperty _flinchSfx;
     private SerializedProperty _medkitSfx;
@@ -41,6 +39,7 @@ public class HealthDataEditor : Editor
     private void OnEnable()
     {
         _maxHealth = serializedObject.FindProperty("_maxHealth");
+        _statusNotifications = serializedObject.FindProperty("_statusNotifications");
         _bleedOut = serializedObject.FindProperty("_bleedOut");
         _bleedDamage = serializedObject.FindProperty("_bleedDamage");
         _bleedDelay = serializedObject.FindProperty("_bleedDelay");
@@ -56,13 +55,10 @@ public class HealthDataEditor : Editor
         _fixLimbCount = serializedObject.FindProperty("_fixLimbCount");
         _splintHealAmount = serializedObject.FindProperty("_splintHealAmount");
         _screenEffects = serializedObject.FindProperty("_screenEffects");
+        _screenFlashes = serializedObject.FindProperty("_screenFlashes");
         _flinchEffect = serializedObject.FindProperty("_flinchEffect");
         _healEffect = serializedObject.FindProperty("_healEffect");
-        _winceEffect = serializedObject.FindProperty("_winceEffect");
         _concussionEffect = serializedObject.FindProperty("_concussionEffect");
-        _affectStats = serializedObject.FindProperty("_affectStats");
-        _movementSpeed = serializedObject.FindProperty("_movementSpeed");
-        _slowIntensity = serializedObject.FindProperty("_slowIntensity");
         _soundEffects = serializedObject.FindProperty("_soundEffects");
         _flinchSfx = serializedObject.FindProperty("_flinchSfx");
         _medkitSfx = serializedObject.FindProperty("_medkitSfx");
@@ -82,6 +78,8 @@ public class HealthDataEditor : Editor
         //custom GUI here
         EditorGUILayout.LabelField("General Health Settings", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(_maxHealth, new GUIContent("Max Health"));
+        EditorGUILayout.Space(10);
+        EditorGUILayout.PropertyField(_statusNotifications, new GUIContent("Status Notifications"));
         EditorGUILayout.Space(20);
         EditorGUILayout.LabelField("General Bleed Settings", EditorStyles.boldLabel);
         EditorGUILayout.Space(10);
@@ -145,6 +143,8 @@ public class HealthDataEditor : Editor
 
         EditorGUILayout.LabelField("General Screen Effect Settings", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(_screenEffects, new GUIContent("Screen Effects"));
+        EditorGUILayout.Space(10);
+        EditorGUILayout.PropertyField(_screenFlashes, new GUIContent("Screen Flashes"));
         if (_screenEffects.boolValue == true)
         {
             EditorGUI.indentLevel++;
@@ -153,31 +153,9 @@ public class HealthDataEditor : Editor
             EditorGUILayout.Space(10);
             EditorGUILayout.PropertyField(_flinchEffect, new GUIContent("Flinch Effect"));
             EditorGUILayout.PropertyField(_healEffect, new GUIContent("Heal Effect"));
-            EditorGUILayout.PropertyField(_winceEffect, new GUIContent("Wince Effect"));
             EditorGUILayout.PropertyField(_concussionEffect, new GUIContent("Concussion Effect"));
         }
         
-        /*
-        EditorGUILayout.Space(40);
-        EditorGUILayout.LabelField("General Stats Settings", EditorStyles.boldLabel);
-        EditorGUILayout.PropertyField(_affectStats, new GUIContent("Affect Stats"));
-        if (_affectStats.boolValue == true)
-        {
-            EditorGUI.indentLevel++;
-            EditorGUILayout.Space(10);
-            EditorGUILayout.LabelField("Advanced Stats Settings", EditorStyles.boldLabel);
-            EditorGUILayout.Space(10);
-            EditorGUILayout.LabelField("Movement", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(_movementSpeed, new GUIContent("Movement Speed"));
-            if (_movementSpeed.boolValue == true)
-            {
-                EditorGUILayout.Space(10);
-                EditorGUI.indentLevel++;
-                _slowIntensity.floatValue = EditorGUILayout.Slider("Slow Intensity",_slowIntensity.floatValue, 1, 10);
-
-            }
-        }
-        */
         EditorGUILayout.Space(40);
 
         EditorGUILayout.LabelField("General SFX Settings", EditorStyles.boldLabel);
