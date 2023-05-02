@@ -18,7 +18,7 @@ public class PlayerHealthManager : MonoBehaviour
     [SerializeField] public bool _bleeding;
 
     private float lastDamageTime;
-
+    private bool _dead;
 
     private float _currentHealth;
     [SerializeField] private GameObject _deathScreen;
@@ -66,9 +66,9 @@ public class PlayerHealthManager : MonoBehaviour
             }
             else
             {
-                if (_screenFxManager._painPanel.activeSelf)
+                if (_screenFxManager._damagePanel.activeSelf)
                 {
-                    _screenFxManager._painPanel.SetActive(false);
+                    _screenFxManager._damagePanel.SetActive(false);
                 }
             }
         }
@@ -94,13 +94,18 @@ public class PlayerHealthManager : MonoBehaviour
 
     public void TakeDamage(float damage) 
     {
-        _currentHealth -= damage;
-        _screenFlasher.StartFlashing(_screenFxManager._painPanel, .2f, 2);
-        SetHealth(_currentHealth);
-        if (_currentHealth <= 0)
+        if (!_dead)
         {
-            Die();
+            _currentHealth -= damage;
+            _screenFlasher.StartFlashing(_screenFxManager._damagePanel, .2f, 2);
+            SetHealth(_currentHealth);
+            if (_currentHealth <= 0)
+            {
+                _dead = true;
+                Die();
+            }
         }
+        
     }
 
     public void HealHealth(float heal) 

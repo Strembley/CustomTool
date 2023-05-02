@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b866ad805440e4b9e8ada4f44a1512, type: 3}
+  m_Name: Health&EffectsData_
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _statusNotifications: 1
+  _bleedOut: 1
+  _bleedDamage: 0.9
+  _bleedDelay: 0.5
+  _limbLoss: 1
+  _arms: 1
+  _legs: 1
+  _head: 1
+  _firstAid: 1
+  _stopBleeding: 1
+  _medkitHealAmount: 20
+  _stopBleedCount: 1
+  _bandageHealAmount: 0
+  _fixLimbCount: 1
+  _splintHealAmount: 0
+  _screenEffects: 1
+  _screenFlashes: 1
+  _flinchEffect: 1
+  _healEffect: 1
+  _concussionEffect: 1
+  _soundEffects: 1
+  _flinchSfx: 1
+  _medkitSfx: 1
+  _bandageSfx: 1
+  _splintSfx: 1
+  _concussionSfx: 1
+  _deathSfx: 1

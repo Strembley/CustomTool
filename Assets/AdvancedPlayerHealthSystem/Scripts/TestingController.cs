@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
 public class TestingController : MonoBehaviour
 {
     private PlayerHealthManager _playerHealthManager;
@@ -24,6 +26,15 @@ public class TestingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+
+
+
         //-------------------------Bleed Controls------------------------//
 
 

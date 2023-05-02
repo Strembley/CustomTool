@@ -17,7 +17,7 @@ public class ScreenFxManager : MonoBehaviour
     [SerializeField] private NoiseSettings _healNoise;
     [SerializeField] private NoiseSettings _concussionNoise;
 
-    [SerializeField] public GameObject _painPanel;
+    [SerializeField] public GameObject _damagePanel;
     [SerializeField] private GameObject _healPanel;
     [SerializeField] private GameObject _blindingPanel;
 
